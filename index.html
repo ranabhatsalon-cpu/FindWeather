@@ -30,14 +30,14 @@
                 <img src="images/humidity.png">
                 <div>
                     <p class="humidity">50%</p>
-                    <p class="humidity">Humidity</p>
+                    <p>Humidity</p>
                 </div>
             </div>
             <div class="col">
                 <img src="images/wind.png" >
                 <div>
                     <p class="wind">15km/hr</p>
-                    <p class="wind">Wind</p>
+                    <p>Wind</p>
                 </div>
             </div>
         </div>
@@ -73,7 +73,7 @@
         document.querySelector(".city").innerHTML = data.name;
         document.querySelector(".temp").innerHTML = Math.round(data.main.temp)+ "°C";
         document.querySelector(".humidity").innerHTML = data.main.humidity+ "%";
-        document.querySelector(".wind").innerHTML = data.wind.speed +  " km/hr";
+        document.querySelector(".wind").innerHTML = Math.round(data.wind.speed) +  " km/hr";
 
         if(data.weather[0].main == "Clouds"){
             document.querySelector(".weather-icon").src = "images/clouds.png";
