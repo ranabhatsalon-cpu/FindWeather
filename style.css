@@ -1,14 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background : #222
+}
+
+
+
+
+
+
 .card{
     width: 90%;
     max-width: 470px;
-    margin: 50px auto;
-    padding: 20px;
+    margin: 100px auto 0;
+    padding: 40px 35px;
     border: 1px solid #ccc;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     text-align: center;
     color: #fff;
-    background: linear-gradient(135deg,#18dcd8, #2b6fc1,rgb(80, 193, 127) , #e0ec07, #f76802 100%);
+    background: linear-gradient(135deg, #4352b3, #11c8ec)
 }
 .serch{
     width: 100%;
@@ -19,12 +34,13 @@
 }
 .search input{
     width: 65%;
-    padding: 10px;
+    padding: 10px 25px;
     background: #ffffff;
     color: #000000;
     border-radius: 30px;
     text-align: center;
     margin-right: 16px;
+    flex : 1;
     border: none;
     outline: none;
     font-size: 18px;
@@ -37,13 +53,13 @@
     height: 40px;
     background-color: white ;
     color: white;
-   
+   cursor: pointer;
     border-radius: 50%;
     
 }
 .search button img{
-    width: 18px;
-    height: 18px;
+    width: 16px;
+
 
 }
 .weather-icon{
@@ -54,13 +70,14 @@
 .weather h1{
     font-size: 80px;
     font-weight: 500;
-    margin-top: -10px;
+   
  
 }
 .weather h2{
-    font-size: 40px;
-    font-weight: 500;
-    margin-top: -40px;
+    font-size: 45px;
+    font-weight: 400;
+    margin-top: 10px;
+  
 }
 .details{
     display: flex;
@@ -77,13 +94,12 @@
 .col img{
     width: 40px;
     margin-right: 10px;
-     margin-bottom: 20px;
+    
 }
 .humidity, .wind{
     font-size: 28px;
     margin-top: -6px;
-    margin-bottom: 9px;
-    margin-left: 10px;
+    
 }
 .weather{
     display: none;
