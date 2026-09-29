@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title> Weather App </title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,34 +11,100 @@
 <div class="card">
     <div class="search">
             
-        <form id="weatherForm">
-        <input type="text" id="cityInput" placeholder="Enter city name" required>
-        <button ><img src="search--v1.webp" ></button>
-        </form>
+        <input type="text"  placeholder="Enter city name" required>
+        <button ><img src="images/search--v1.webp" ></button>
+        
     </div>
+    <div class="error">
+
+        <p>invalid city name</p>
+    </div>
+    
     <div class="weather">
-        <img src="rain.png" class="weather-icon" > 
+        <img src="images/rain.png" class="weather-icon" > 
         <h1 class="temp">25°C</h1>  
         <h2 class="city">New York</h2>
 
         <div class="details">
             <div class="col">
-                <img src="humidity.png">
+                <img src="images/humidity.png">
                 <div>
                     <p class="humidity">50%</p>
-                    <p>Humidity</p>
+                    <p class="humidity">Humidity</p>
                 </div>
             </div>
             <div class="col">
-                <img src="wind.png" >
+                <img src="images/wind.png" >
                 <div>
                     <p class="wind">15km/hr</p>
-                    <p>wind</p>
+                    <p class="wind">Wind</p>
                 </div>
             </div>
         </div>
     </div>
  </div>
+ <script>   
+    
+  const apiKey = "42f8356a719742b99c4f34e3f36cc584";
+    const apiurl="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
+    const searchbox = document.querySelector(".search input");
+    const searchbtn = document.querySelector(".search button");
+
+    async function weather(city){
+        const response = await fetch(apiurl+ city +`&appid=${apiKey}`);
+
+
+        if(response.status == 404){
+            document.querySelector(".error").style.display = "block";
+            document.querySelector(".weather").style.display = "none";
+        }
+        else{
+            document.querySelector(".error").style.display = "none";
+        }
+
+
+        const data = await response.json();
+
+
+        console.log(data);
+
+        
+        document.querySelector(".city").innerHTML = data.name;
+        document.querySelector(".temp").innerHTML = Math.round(data.main.temp)+ "°C";
+        document.querySelector(".humidity").innerHTML = data.main.humidity+ "%";
+        document.querySelector(".wind").innerHTML = data.wind.speed +  " km/hr";
+
+        if(data.weather[0].main == "Clouds"){
+            document.querySelector(".weather-icon").src = "images/clouds.png";
+            document.querySelector(".card").style.background = "linear-gradient(to right, #d7d7d7, #a6a6a6)";
+        }
+        else if(data.weather[0].main == "Clear"){
+            document.querySelector(".weather-icon").src = "images/clear.png";
+            document.querySelector(".card").style.background = "linear-gradient(to right, #e0d135 , #f89900 )";
+        }
+        else if(data.weather[0].main == "Rain"){
+            document.querySelector(".weather-icon").src = "images/rain.png";
+            document.querySelector(".card").style.background = "linear-gradient(to right, #00c6fb, #005bea)";
+        }
+        else if(data.weather[0].main == "Drizzle"){
+            document.querySelector(".weather-icon").src = "images/drizzle.png";
+            document.querySelector(".card").style.background = "linear-gradient(to right, #89f7fe, #66a6ff)";
+        }
+        else if(data.weather[0].main == "Mist"){
+            document.querySelector(".weather-icon").src = "images/mist.png";
+            document.querySelector(".card").style.background = "linear-gradient(to right, #3e5151, #decba4)";
+        }
+
+        document.querySelector(".weather").style.display = "block";
+    }
+
+    searchbtn.addEventListener("click", (e)=>{
+         e.preventDefault();
+         weather(searchbox.value);
+    });
+
+
+ </script>
 </body>
 </html>
